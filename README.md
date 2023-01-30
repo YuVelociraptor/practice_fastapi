@@ -12,5 +12,6 @@ docker compose up -d
 - Port number is `8000`
     - http://localhost:8000
 ```
+poetry install
 poetry run uvicorn main:fast_api --host 0.0.0.0
 ```
