@@ -1,0 +1,12 @@
+version: "3"
+services:
+  web_api:
+    build: 
+      context: .
+      dockerfile: ./docker/Dockerfile_python
+    container_name: web_api
+    working_dir: /usr/src/app
+    tty: true
+    command: sh run.sh
+    ports:
+      - 39991:8000
