@@ -9,4 +9,4 @@ services:
     tty: true
     command: sh run.sh
     ports:
-      - 39991:8000
+      - 39993:8000
