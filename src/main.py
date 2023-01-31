@@ -1,7 +1,37 @@
 from fastapi import FastAPI
 
+import time
+import asyncio
+
 fast_api = FastAPI()
 
 @fast_api.get("/")
 def root_path():
     return "test"
+
+@fast_api.get("/sync")
+def sync_test():
+    proc(5)
+    proc(7)
+    return "sync"
+
+@fast_api.get("/async")
+def sync_test():
+    
+    fire_and_forget(proc, 10)
+
+    return "async"
+
+def proc(t):
+
+    for i in range(t):
+        print(i)
+        time.sleep(1)
+
+def fire_and_forget(task, *args, **kwagrs):
+    loop = asyncio.new_event_loop()
+
+    if callable(task):
+        loop.run_in_executor(None, task, *args, **kwagrs)
+    else:
+        raise TypeError('Task is not callable')
