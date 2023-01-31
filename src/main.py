@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 
-import time
 import asyncio
+
+import time
+import psutil 
 
 fast_api = FastAPI()
 
@@ -26,6 +28,8 @@ def proc(t):
 
     for i in range(t):
         print(i)
+        mem = psutil.virtual_memory()
+        print(mem.used / mem.total)
         time.sleep(1)
 
 def fire_and_forget(task, *args, **kwagrs):
