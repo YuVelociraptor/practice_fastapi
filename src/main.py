@@ -4,6 +4,7 @@ import asyncio
 
 import time
 import psutil 
+import datetime
 
 fast_api = FastAPI()
 
@@ -39,3 +40,11 @@ def fire_and_forget(task, *args, **kwagrs):
         loop.run_in_executor(None, task, *args, **kwagrs)
     else:
         raise TypeError('Task is not callable')
+    
+
+def write_s3():
+
+    file_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
+    f = open('./test/' + file_name,  'w')
+    f.write(file_name)
+    f.close()
