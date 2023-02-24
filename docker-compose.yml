@@ -10,3 +10,9 @@ services:
     command: sh run.sh
     ports:
       - 39993:8000
+  redis:
+    image: redis:6.2
+    container_name: fastapi_redis
+    ports:
+      - 49991:6379
+    tty: true
